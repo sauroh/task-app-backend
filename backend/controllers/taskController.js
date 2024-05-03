@@ -4,6 +4,7 @@ const Task = require("../models/taskModel");
 const createTask = async (req, res) => {
     try {
         const task = await Task.create(req.body);
+        res.header("Access-Control-Allow-Origin", "*");
         res.status(200).json(task);
     } catch (error) {
         res.status(500).json({msg: error.message});
@@ -14,6 +15,7 @@ const createTask = async (req, res) => {
 const getTasks = async (req, res) => {
     try {
         const tasks = await Task.find();
+        res.header("Access-Control-Allow-Origin", "*");
         res.status(200).json(tasks);
     } catch (error) {
         res.status(500).json({msg: error.message});
@@ -29,6 +31,7 @@ const getTask = async (req, res) => {
         if(!task) {
             return res.status(404).json(`No task with id: ${id}`)
         }
+        res.header("Access-Control-Allow-Origin", "*");
         res.status(200).json(task)
     } catch (error) {
         res.status(500).json({msg: error.message});
@@ -43,6 +46,7 @@ const deleteTask = async (req, res) => {
         if(!task) {
             return res.status(404).json(`No task with id: ${id}`)
         }
+    
         res.status(200).send("Task deleted")
     } catch (error) {
         res.status(500).json({msg: error.message});
