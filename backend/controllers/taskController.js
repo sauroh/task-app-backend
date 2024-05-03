@@ -46,7 +46,7 @@ const deleteTask = async (req, res) => {
         if(!task) {
             return res.status(404).json(`No task with id: ${id}`)
         }
-    
+        res.header("Access-Control-Allow-Origin", "*");
         res.status(200).send("Task deleted")
     } catch (error) {
         res.status(500).json({msg: error.message});
@@ -67,6 +67,7 @@ const updateTask = async (req, res) => {
         if(!task) {
             return res.status(404).json(`No task with id: ${id}`)
         }
+        res.header("Access-Control-Allow-Origin", "*");
         res.status(200).json(task)
     } catch (error) {
         res.status(500).json({msg: error.message});
