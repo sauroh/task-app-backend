@@ -15,12 +15,9 @@ const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-app.use(cors({
-    origin: ["http://localhost:3000", "https://task-app-frontend-3lbk.onrender.com/", "https://task-app-backend-api.onrender.com/api/tasks"]
-}
-));
+app.use(cors());
 
-app.use("/api/tasks",taskRoutes);
+app.use("/api/tasks",cors(),taskRoutes);
 
 
 
